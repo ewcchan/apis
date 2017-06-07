@@ -18,10 +18,10 @@ lastupdated: "2017-06-07"
 
 Version: 1.0.0
 
-You can install the {{site.data.keyword.Bluemix_notm}} API management command line interface (CLI) plugin to complete some common management actions to your APIs with scripting. The following information lists the commands that are included with the API management CLI plug-in, and includes their names, options, usage, prerequisites, descriptions, and examples.
+You can install the {{site.data.keyword.Bluemix_notm}} API management command line interface (CLI) plug-in to complete common management actions to your APIs with scripting. The following information lists the commands that are included with the API management CLI plug-in, including their names, options, usage, prerequisites, descriptions, and examples.
 {:shortdesc}
 
-**Note:** *Prerequisites* list which actions are required before using the command. Commands that have no prerequisite actions list **None**. Otherwise, prerequisites might include one or more of the following actions:
+**Note:** **Prerequisites** list which actions are required before using the command. Commands that have no prerequisite actions list **None**. Otherwise, prerequisites might include one or more of the following actions:
 
 **Note:** You can use the short format of bluemix commands; for example, `bx api` is short for `bluemix api`.
 
