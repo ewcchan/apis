@@ -19,5 +19,6 @@ API management
     manage_openwhisk_apis.md
 	manage_cf_apis.md
     manage_apis.md
+	apimgt_cli.md
     managed_apis.md
     {: .navgroup-end}
