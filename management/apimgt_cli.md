@@ -18,7 +18,7 @@ lastupdated: "2017-06-07"
 
 Version: 1.0.0
 
-You can install the {{site.data.keyword.Bluemix_notm}} API management command line interface (CLI) plugin to complete some common management actions to your APIs with scripting. The following information lists the commands that are included with the API management CLI plugin, and includes their names, options, usage, prerequisites, descriptions, and examples.
+You can install the {{site.data.keyword.Bluemix_notm}} API management command line interface (CLI) plugin to complete some common management actions to your APIs with scripting. The following information lists the commands that are included with the API management CLI plug-in, and includes their names, options, usage, prerequisites, descriptions, and examples.
 {:shortdesc}
 
 **Note:** *Prerequisites* list which actions are required before using the command. Commands that have no prerequisite actions list **None**. Otherwise, prerequisites might include one or more of the following actions:
@@ -165,7 +165,7 @@ bluemix apim apis [--api-type *API_TYPE*] [--exposed][--unexposed] [--shared] [-
 
    <dl>
    <dt>--api-type, -t <i>API_TYPE</i></dt>
-   <dd>Only returns the types of APIs that you specify here. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for CloudFoundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or CloudFoundry.</dd>
+   <dd>Only returns the types of APIs that you specify here. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for Cloud Foundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or Cloud Foundry.</dd>
    <dt>--exposed, -e</dt>
    <dd>Only returns APIs that are exposed.</dd>
    <dt>--unexposed, -u</dt>
@@ -228,9 +228,9 @@ bluemix apim api-create [--api-name *API_NAME*][--api-type *API_TYPE*][--app *CF
    <dt>--api-name, -n <i>API_NAME</i></dt>
    <dd>Specifies the name of the API that you want to manage.</dd>
    <dt>--api-type, -t <i>API_TYPE</i></dt>
-   <dd>Specifies the type of the API that you want to create. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for CloudFoundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or CloudFoundry.</dd>
+   <dd>Specifies the type of the API that you want to create. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for Cloud Foundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or Cloud Foundry.</dd>
    <dt>--app, -a</dt>
-   <dd>Specifies the name of the CloudFoundry application that is associated with this API. Note: This entry is required when *cf-apps* is specified as the type.</dd>
+   <dd>Specifies the name of the Cloud Foundry application that is associated with this API. Note: This entry is required when *cf-apps* is specified as the type.</dd>
    <dt>--definition-file, -f</dt>
    <dd>Provides the path to the Open API definition file, which is in YAML or JSON format.</dd>
    </dl>
@@ -263,7 +263,7 @@ Manage an OpenWhisk API called apinumber1 that has a yaml definition file called
 bluemix apim api-create --api-name apinumber1 --api-type whisk --definition-file ~/dev/apis/reservations1.yaml 
 ```
 
-Manage a CloudFoundry app called cfapi that has a json definition file called definition1:
+Manage a Cloud Foundry app called cfapi that has a json definition file called definition1:
 
 ```
 bluemix apim api-create --api-name cfapi --api-type cf-apps  --app cfapi --definition-file ~/dev/apis/definition1.json
@@ -285,9 +285,9 @@ bluemix apim api-delete [--api-name *API_NAME*][--api-type *API_TYPE*][--confirm
 
    <dl>
    <dt>--api-name, -n <i>API_NAME</i></dt>
-   <dd>Specifies the name of the API that you want to manage. **Important:** Deleting a CloudFoundry API removes the API from the managed state, but the CloudFoundry app is not deleted. Deleting an OpenWhisk API deletes the entire API, and must be recreated after it is deleted.</dd>
+   <dd>Specifies the name of the API that you want to manage. **Important:** Deleting a Cloud Foundry API removes the API from the managed state, but the Cloud Foundry app is not deleted. Deleting an OpenWhisk API deletes the entire API, and must be recreated after it is deleted.</dd>
    <dt>--api-type, -t <i>API_TYPE</i></dt>
-   <dd>Specifies the type of the API that you want to create. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for CloudFoundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or CloudFoundry.</dd>
+   <dd>Specifies the type of the API that you want to create. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for Cloud Foundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or Cloud Foundry.</dd>
    <dt>--confirm, -c</dt>
    <dd>Confirms that the command should be completed without providing a confirmation prompt.</dd>
    </dl>
@@ -320,7 +320,7 @@ Delete an OpenWhisk API called whiskapi1, but confirm with me before it is delet
 bluemix apim api-delete --api-name whiskapi1
 ```
 
-Delete the CloudFoundry API cloudapi1, and do not request a confirmation before deleting it:
+Delete the Cloud Foundry API cloudapi1, and do not request a confirmation before deleting it:
 
 ```
 bluemix apim api-delete --api-name cloudapi1 --confirm
@@ -331,7 +331,7 @@ bluemix apim api-delete --api-name cloudapi1 --confirm
 ### bluemix curl
 {: #bluemix_curl}
 
-Execute a raw HTTP request to {{site.data.keyword.Bluemix_notm}}. *Content-Type* is set to *application/json* by default. This command sends the request to {{site.data.keyword.Bluemix_notm}} Multi-Cloud Control Proxy. For supported paths, refer to the API path definitions in the [CloudFoundry API document](http://apidocs.cloudfoundry.org/){: new_window} ![External link icon](../../../icons/launch-glyph.svg).
+Execute a raw HTTP request to {{site.data.keyword.Bluemix_notm}}. *Content-Type* is set to *application/json* by default. This command sends the request to {{site.data.keyword.Bluemix_notm}} Multi-Cloud Control Proxy. For supported paths, refer to the API path definitions in the [Cloud Foundry API document](http://apidocs.Cloud Foundry.org/){: new_window} ![External link icon](../../../icons/launch-glyph.svg).
 
 ```
 bluemix curl PATH [OPTIONS...]
