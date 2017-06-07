@@ -5,7 +5,7 @@
 copyright:
 
   years: 2017
-lastupdated: "2017-05-16"
+lastupdated: "2017-06-07"
 
 ---
 
@@ -210,6 +210,64 @@ Return all of the OpenWhisk APIs that are available:
 bluemix apim apis --api-type whisk
 ```
 
+### bluemix apim api-create
+{: #apim_api-create}
+
+
+Makes an existing unmanaged API into a managed API by importing its Swagger file.
+
+```
+bluemix apim api-create [--api-name *API_NAME*][--api-type *API_TYPE*][--app *CF_APP_NAME*][--definition-file *OPEN_API_DEFINITION_FILE*]
+```
+
+<strong>Prerequisites</strong>:  None
+
+<strong>Command options</strong>:
+
+   <dl>
+   <dt>--api-name, -n <i>API_NAME</i></dt>
+   <dd>Specifies the name of the API that you want to manage.</dd>
+   <dt>--api-type, -t <i>API_TYPE</i></dt>
+   <dd>Specifies the type of the API that you want to create. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for CloudFoundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or CloudFoundry.</dd>
+   <dt>--app, -a</dt>
+   <dd>Specifies the name of the CloudFoundry application that is associated with this API. Note: This entry is required when *cf-apps* is specified as the type.</dd>
+   <dt>--definition-file, -f</dt>
+   <dd>Provides the path to the Open API definition file, which is in YAML or JSON format.</dd>
+   </dl>
+
+Only one of these options can be specified at a time.
+
+<strong>Output</strong>
+
+The command outputs a table that lists the following information about the specified APIs:
+
+   <dl>
+     <dt>Name</dt>
+	 <dd>The name of the API.</dd>
+	 <dt>Type</dt>
+	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
+	 <dt>Artifact ID</dt>
+	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
+	 <dt>Exposed</dt>
+	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
+	 <dt>Shared</dt>
+	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
+   </dl>
+
+
+<strong>Examples</strong>
+
+Manage an OpenWhisk API called apinumber1:
+
+```
+bluemix apim api-create --api-name apinumber1 --api-type whisk --definition-file ~/dev/apis/reservations1.yaml 
+```
+
+Return all of the OpenWhisk APIs that are available:
+
+```
+bluemix apim apis --api-type whisk
+```
 
 
 ### bluemix curl
