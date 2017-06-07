@@ -257,17 +257,75 @@ The command outputs a table that lists the following information about the speci
 
 <strong>Examples</strong>
 
-Manage an OpenWhisk API called apinumber1:
+Manage an OpenWhisk API called apinumber1 that has a yaml definition file called reservations1:
 
 ```
 bluemix apim api-create --api-name apinumber1 --api-type whisk --definition-file ~/dev/apis/reservations1.yaml 
 ```
 
-Return all of the OpenWhisk APIs that are available:
+Manage a CloudFoundry app called cfapi that has a json definition file called definition1:
 
 ```
-bluemix apim apis --api-type whisk
+bluemix apim api-create --api-name cfapi --api-type cf-apps  --app cfapi --definition-file ~/dev/apis/definition1.json
 ```
+
+### bluemix apim api-delete
+{: #apim_api-delete}
+
+
+Removes a managed API from the database.
+
+```
+bluemix apim api-delete [--api-name *API_NAME*][--api-type *API_TYPE*][--confirm]
+```
+
+<strong>Prerequisites</strong>:  None
+
+<strong>Command options</strong>:
+
+   <dl>
+   <dt>--api-name, -n <i>API_NAME</i></dt>
+   <dd>Specifies the name of the API that you want to manage. **Important:** Deleting a CloudFoundry API removes the API from the managed state, but the CloudFoundry app is not deleted. Deleting an OpenWhisk API deletes the entire API, and must be recreated after it is deleted.</dd>
+   <dt>--api-type, -t <i>API_TYPE</i></dt>
+   <dd>Specifies the type of the API that you want to create. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for CloudFoundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or CloudFoundry.</dd>
+   <dt>--confirm, -c</dt>
+   <dd>Confirms that the command should be completed without providing a confirmation prompt.</dd>
+   </dl>
+
+Only one of these options can be specified at a time.
+
+<strong>Output</strong>
+
+The command outputs a table that lists the following information about the specified APIs:
+
+   <dl>
+     <dt>Name</dt>
+	 <dd>The name of the API.</dd>
+	 <dt>Type</dt>
+	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
+	 <dt>Artifact ID</dt>
+	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
+	 <dt>Exposed</dt>
+	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
+	 <dt>Shared</dt>
+	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
+   </dl>
+
+
+<strong>Examples</strong>
+
+Delete an OpenWhisk API called whiskapi1, but confirm with me before it is deleted:
+
+```
+bluemix apim api-delete --api-name whiskapi1
+```
+
+Delete the CloudFoundry API cloudapi1, and do not request a confirmation before deleting it:
+
+```
+bluemix apim api-delete --api-name cloudapi1 --confirm
+```
+
 
 
 ### bluemix curl
