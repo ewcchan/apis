@@ -1,4 +1,4 @@
-# apis sub-collection
+# apis
 
 This repo contains the API management content sub-collection.  
 
