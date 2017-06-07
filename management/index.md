@@ -62,7 +62,7 @@ CORS allows embedded scripts in a web page to call the API across domain boundar
 ## Command-line interface
 {: #cli notoc}
 
-If you prefer running frequent tasks by using scripting, then you can also run many of the API management tasks by extending the Bluemix command line with the API management plugin. 
+If you prefer running frequent tasks by using scripting, you can also run many of the API management tasks by extending the Bluemix command line with the API management plug-in. 
 
 ## Additional API management options
 {: #add_mgt_options notoc}
