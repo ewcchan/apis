@@ -378,7 +378,7 @@ bluemix apim api-expose --api-name cloudfound1
 
 
 
-### bluemix apim api-keys
+### bluemix apim keys
 {: #apim_api-keys}
 
 
@@ -411,18 +411,14 @@ The command outputs a table that lists the following information about the speci
 
 
    <dl>
-     <dt>Name</dt>
-	 <dd>The name of the API.</dd>
-	 <dt>Type</dt>
-	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
-	 <dt>Artifact ID</dt>
-	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
-	 <dt>Exposed</dt>
-	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
-	 <dt>Shared</dt>
-	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
-	 <dt>Keys</dt>
-	 <dd>Provides the keys for the API.</dd>
+     <dt>Key Name</dt>
+	 <dd>The name of the API key.</dd>
+	 <dt>Key Type</dt>
+	 <dd>The type of API key. Valid entries are inside-bluemix-org and outside-bluemix-org.</dd>
+	 <dt>Client ID</dt>
+	 <dd>The name of the client that is identified with the key.</dd>
+	 <dt>Secret Provded</dt>
+	 <dd>Indicates whether the API secret is provided for the API. The possible values are true if there is a secret, and false if there is no secret.
    </dl>
 
 
