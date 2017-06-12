@@ -5,7 +5,7 @@
 copyright:
 
   years: 2017
-lastupdated: "2017-06-08"
+lastupdated: "2017-06-09"
 
 ---
 
@@ -24,11 +24,11 @@ You can install the {{site.data.keyword.Bluemix_notm}} API management command li
 
 **Note:** **Prerequisites** list which actions are required before using the command. Commands that have no prerequisite actions list **None**. Otherwise, prerequisites might include one or more of the following actions:
 
-**Note:** You can use the short format of bluemix commands; for example, `bx api` is short for `bluemix api`.
+**Note:** You can use the short format of bluemix commands; for example, `bx apim` is short for `bluemix apim`.
 
 Use the indexes in the following tables to refer to the frequently used API management commands.
 
-## Commands for API providers 
+## Commands for API providers
 {: #apim_commands_prov}
 
 <table summary="API management provider commands.">
@@ -81,11 +81,7 @@ Use the indexes in the following tables to refer to the frequently used API mana
 Display the general help for first-level built-in commands and supported namespaces of API management CLI, or the help for a specific built-in command or namespace.
 
 <strong>Syntax</strong>
-```
-bluemix help apim [COMMAND|NAMESPACE]
-```
-{: codeblock}
-or
+
 ```
 bluemix apim help object-action
 ```
@@ -96,8 +92,8 @@ bluemix apim help object-action
 <strong>Command options</strong>:
 
    <dl>
-   <dt>COMMAND|NAMESPACE (optional)</dt>
-   <dd>The command or namespace that help is displayed for. If not specified, the general help for the API management CLI is shown.</dd>
+   <dt>object-action (optional)</dt>
+   <dd>The command for which the help is displayed. If not specified, the general help for the API management CLI is shown.</dd>
    </dl>
 
 
@@ -124,7 +120,7 @@ Display the properties of a managed API.
 
 <strong>Syntax</strong>
 ```
-bluemix apim api [--api-name *API_NAME*] [--api-type *API_TYPE*]
+bluemix apim api *API_NAME* [--swagger]
 ```
 {: codeblock}
 
@@ -132,19 +128,48 @@ bluemix apim api [--api-name *API_NAME*] [--api-type *API_TYPE*]
 
 <strong>Command options</strong>:
    <dl>
-   <dt>--api-name, -n (optional)</dt>
-   <dd>The name of the managed API.</dd>
-   <dt>--api-type, -t (optional)</dt>
-   <dd>Type of API (whisk, cf-apps, user-defined)</dd>
+   <dt>--api-name, -n</dt>
+   <dd>Specifies the name of the managed API</dd>
+   <dt>--swagger (optional)</dt>
+   <dd>Displays the information from the Open API definition document in the output</dd>
    </dl>
+
+<strong>Output</strong>
+
+The command outputs a table that lists the following information about the specified API:
+
+   <dl>
+     <dt>Name</dt>
+	 <dd>The name of the API.</dd>
+	 <dt>Type</dt>
+	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined</dd>
+	 <dt>Artifact ID</dt>
+	 <dd>The ID that is assigned to the API by the endpoint manager</dd>
+	 <dt>Exposed</dt>
+	 <dd>Indicates whether the API is exposed (*true*) or not (*false*)
+	 <dt>Shared</dt>
+	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false*)</dd>
+	 <dt>Base Path</dt>
+	 <dd>Provides the path where the base path of the API is, if available</dd>
+	 <dt>Managed URL</dt>
+	 <dd>Specifies the location of the shared version of the API</dd>
+   </dl>
+
    
 <strong >Examples</strong>:
 
-Display the properties of the following API:
+Display the properties of the API named cloudfound1:
 
 ```
-bluemix apim api api.chinabluemix.net
+bluemix apim api cloudfound1
 ```
+
+Display the properties and definition file contents for the API named api2:
+
+```
+bluemix apim api api2 --swagger
+```
+
 
 ### bluemix apim apis
 {: #apim_apis}
@@ -153,7 +178,7 @@ bluemix apim api api.chinabluemix.net
 List the APIs that are available and identified on the identified endpoint server.
 
 ```
-bluemix apim apis [--api-type *API_TYPE*] [--exposed][--unexposed] [--shared] [--unshared]
+bluemix apim apis [--api-type *API_TYPE*][--exposed][--unexposed] [--shared] [--unshared]
 ```
 {: codeblock}
 
@@ -215,7 +240,7 @@ bluemix apim apis --api-type whisk
 Makes an existing unmanaged API into a managed API by importing its Swagger file.
 
 ```
-bluemix apim api-create [--api-name *API_NAME*][--api-type *API_TYPE*][--app *CF_APP_NAME*][--definition-file *OPEN_API_DEFINITION_FILE*]
+bluemix apim api-create *API_NAME* *PATH_TO_OPEN_API_DEFINITION_FILE*
 ```
 {: codeblock}
 
@@ -226,48 +251,28 @@ bluemix apim api-create [--api-name *API_NAME*][--api-type *API_TYPE*][--app *CF
    <dl>
    <dt>--api-name, -n <i>API_NAME</i></dt>
    <dd>Specifies the name of the API that you want to manage.</dd>
-   <dt>--api-type, -t <i>API_TYPE</i></dt>
-   <dd>Specifies the type of the API that you want to create. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for Cloud Foundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or Cloud Foundry.</dd>
-   <dt>--app, -a</dt>
-   <dd>Specifies the name of the Cloud Foundry application that is associated with this API. Note: This entry is required when *cf-apps* is specified as the type.</dd>
    <dt>--definition-file, -f</dt>
    <dd>Provides the path to the Open API definition file, which is in YAML or JSON format.</dd>
    </dl>
 
-Only one of these options can be specified at a time.
-
 <strong>Output</strong>
 
-The command outputs a table that lists the following information about the specified APIs:
-
-   <dl>
-     <dt>Name</dt>
-	 <dd>The name of the API.</dd>
-	 <dt>Type</dt>
-	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
-	 <dt>Artifact ID</dt>
-	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
-	 <dt>Exposed</dt>
-	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
-	 <dt>Shared</dt>
-	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
-   </dl>
-
+The command outputs the following information:
+* Created successfully
+* Error (with description of the error)
 
 <strong>Examples</strong>
 
 Manage an OpenWhisk API called apinumber1 that has a yaml definition file called reservations1:
 
 ```
-bluemix apim api-create --api-name apinumber1 --api-type whisk
- --definition-file ~/dev/apis/reservations1.yaml 
+bluemix apim api-create apinumber1 ~/dev/apis/reservations1.yaml 
 ```
 
 Manage a Cloud Foundry app called cfapi that has a json definition file called definition1:
 
 ```
-bluemix apim api-create --api-name cfapi --api-type cf-apps  --app cfapi 
- --definition-file ~/dev/apis/definition1.json
+bluemix apim api-create cfapi ~/dev/apis/definition1.json
 ```
 
 ### bluemix apim api-delete
@@ -277,7 +282,7 @@ bluemix apim api-create --api-name cfapi --api-type cf-apps  --app cfapi
 Removes a managed API from the database.
 
 ```
-bluemix apim api-delete [--api-name *API_NAME*][--api-type *API_TYPE*][--confirm]
+bluemix apim api-delete *API_NAME* [--confirm]
 ```
 {: codeblock}
 
@@ -288,44 +293,28 @@ bluemix apim api-delete [--api-name *API_NAME*][--api-type *API_TYPE*][--confirm
    <dl>
    <dt>--api-name, -n <i>API_NAME</i></dt>
    <dd>Specifies the name of the API that you want to delete. **Important:** Deleting a Cloud Foundry API removes the API from the managed state, but the Cloud Foundry app is not deleted. Deleting an OpenWhisk API deletes the entire API, and must be recreated after it is deleted.</dd>
-   <dt>--api-type, -t <i>API_TYPE</i></dt>
-   <dd>Specifies the type of the API that you want to create. Valid options are **whisk** for Openwhisk APIs, **cf-apps** for Cloud Foundry App APIs, and **user_defined** for APIs that are not associated with Openwhisk or Cloud Foundry.</dd>
    <dt>--confirm, -c</dt>
    <dd>Confirms that the command should be completed without providing a confirmation prompt.</dd>
    </dl>
 
-Only one of these options can be specified at a time.
-
 <strong>Output</strong>
 
-The command outputs a table that lists the following information about the specified APIs:
-
-   <dl>
-     <dt>Name</dt>
-	 <dd>The name of the API.</dd>
-	 <dt>Type</dt>
-	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
-	 <dt>Artifact ID</dt>
-	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
-	 <dt>Exposed</dt>
-	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
-	 <dt>Shared</dt>
-	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
-   </dl>
-
+The command outputs the following information:
+* Deleted successfully
+* Error (with description of the error)
 
 <strong>Examples</strong>
 
 Delete an OpenWhisk API called whiskapi1, but confirm with me before it is deleted:
 
 ```
-bluemix apim api-delete --api-name whiskapi1
+bluemix apim api-delete whiskapi1
 ```
 
 Delete the Cloud Foundry API cloudapi1, and do not request a confirmation before deleting it:
 
 ```
-bluemix apim api-delete --api-name cloudapi1 --confirm
+bluemix apim api-delete cloudapi1 --confirm
 ```
 
 
@@ -336,7 +325,7 @@ bluemix apim api-delete --api-name cloudapi1 --confirm
 Makes a managed API visible to others inside your Bluemix organization.
 
 ```
-bluemix apim api-expose [--api-name *API_NAME*]
+bluemix apim api-expose *API_NAME*
 ```
 {: codeblock}
 
@@ -349,33 +338,19 @@ bluemix apim api-expose [--api-name *API_NAME*]
    <dd>Specifies the name of the API that you want to expose.</dd>
    </dl>
 
-Only one of these options can be specified at a time.
-
 <strong>Output</strong>
 
-The command outputs a table that lists the following information about the specified APIs:
-
-   <dl>
-     <dt>Name</dt>
-	 <dd>The name of the API.</dd>
-	 <dt>Type</dt>
-	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
-	 <dt>Artifact ID</dt>
-	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
-	 <dt>Exposed</dt>
-	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
-	 <dt>Shared</dt>
-	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
-   </dl>
+The command outputs the following information:
+* Exposed successfully
+* Error (with description of the error)
 
 <strong>Example</strong>
 
 Expose a Cloud Foundry API called cloudfound1 with my Bluemix organization:
 
 ```
-bluemix apim api-expose --api-name cloudfound1
+bluemix apim api-expose cloudfound1
 ```
-
 
 
 ### bluemix apim keys
@@ -385,7 +360,7 @@ bluemix apim api-expose --api-name cloudfound1
 Displays the properties of keys that are associated with a managed API.
 
 ```
-bluemix apim api-keys [--api-name *API_NAME*][--api-type *API_TYPE*]
+bluemix apim api-keys *API_NAME*
 [--key-type *API_KEY_TYPE*]
 ```
 {: codeblock}
@@ -397,8 +372,6 @@ bluemix apim api-keys [--api-name *API_NAME*][--api-type *API_TYPE*]
    <dl>
    <dt>--api-name, -n <i>API_NAME</i></dt>
    <dd>Specifies the name of the API that you want to expose.</dd>
-   <dt>Type</dt>
-   <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
    <dt>key_type</dt>
    <dd>The types of API keys that you want to display. Valid entries are <em>inside-bluemix-org</em> and <em>outside-bluemix-org</em>. If this option is not included, all keys for the specified API are displayed.</dd>
    </dl>
@@ -427,13 +400,13 @@ The command outputs a table that lists the following information about the speci
 Return all of the keys that are associated with the Cloud Foundry API called cloudfound1.
 
 ```
-bluemix apim api-keys --api-name cloudfound1
+bluemix apim api-keys cloudfound1
 ```
 
 Return the keys that allow people inside of my Bluemix organization to see my API named myapi1.
 
 ```
-Bluemix apim api-keys --apiname myapi1 
+Bluemix apim api-keys myapi1 
 --key-type inside-bluemix-org
 ```
  
@@ -445,7 +418,7 @@ Bluemix apim api-keys --apiname myapi1
 Makes a managed API visible to others outside of your Bluemix organization.
 
 ```
-bluemix apim api-share [--api-name *API_NAME*]
+bluemix apim api-share *API_NAME*
 ```
 {: codeblock}
 
@@ -458,32 +431,18 @@ bluemix apim api-share [--api-name *API_NAME*]
    <dd>Specifies the name of the API that you want to share.</dd>
    </dl>
 
-Only one of these options can be specified at a time.
-
 <strong>Output</strong>
 
-The command outputs a table that lists the following information about the specified APIs:
-
-   <dl>
-     <dt>Name</dt>
-	 <dd>The name of the API.</dd>
-	 <dt>Type</dt>
-	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
-	 <dt>Artifact ID</dt>
-	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
-	 <dt>Exposed</dt>
-	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
-	 <dt>Shared</dt>
-	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
-   </dl>
-
+The command outputs the following information:
+* Shared successfully
+* Error (with description of the error)
 
 <strong>Example</strong>
 
 Share a Cloud Foundry API called cloudfound1 outside of my Bluemix organization:
 
 ```
-bluemix apim api-share --api-name cloudfound1
+bluemix apim api-share cloudfound1
 ```
 
 
@@ -495,7 +454,7 @@ bluemix apim api-share --api-name cloudfound1
 Makes a managed API that is visible to others inside your Bluemix organization no longer visible to others.
 
 ```
-bluemix apim api-unexpose [--api-name *API_NAME*]
+bluemix apim api-unexpose *API_NAME*
 ```
 {: codeblock}
 
@@ -508,32 +467,18 @@ bluemix apim api-unexpose [--api-name *API_NAME*]
    <dd>Specifies the name of the API that you want to remove from the visibility of others in your Bluemix organization.</dd>
    </dl>
 
-Only one of these options can be specified at a time.
-
 <strong>Output</strong>
 
-The command outputs a table that lists the following information about the specified APIs:
-
-   <dl>
-     <dt>Name</dt>
-	 <dd>The name of the API.</dd>
-	 <dt>Type</dt>
-	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
-	 <dt>Artifact ID</dt>
-	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
-	 <dt>Exposed</dt>
-	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
-	 <dt>Shared</dt>
-	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
-   </dl>
-
+The command outputs the following information:
+* Unexposed successfully
+* Error (with description of the error)
 
 <strong>Example</strong>
 
 Remove an OpenWhisk API called openwhisk1 from view to other members of my Bluemix organization:
 
 ```
-bluemix apim api-unexpose --api-name openwhisk1
+bluemix apim api-unexpose openwhisk1
 ```
 
 
@@ -544,7 +489,7 @@ bluemix apim api-unexpose --api-name openwhisk1
 Removes a managed API that is visible to others outside of your Bluemix organization from visibility.
 
 ```
-bluemix apim api-unshare [--api-name *API_NAME*]
+bluemix apim api-unshare *API_NAME*
 ```
 {: codeblock}
 
@@ -557,32 +502,18 @@ bluemix apim api-unshare [--api-name *API_NAME*]
    <dd>Specifies the name of the API that you want to stop sharing.</dd>
    </dl>
 
-Only one of these options can be specified at a time.
-
 <strong>Output</strong>
 
-The command outputs a table that lists the following information about the specified APIs:
-
-   <dl>
-     <dt>Name</dt>
-	 <dd>The name of the API.</dd>
-	 <dt>Type</dt>
-	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
-	 <dt>Artifact ID</dt>
-	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
-	 <dt>Exposed</dt>
-	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
-	 <dt>Shared</dt>
-	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
-   </dl>
-
+The command outputs the following information:
+* Unshared successfully
+* Error (with description of the error)
 
 <strong>Example</strong>
 
 Stop sharing a Cloud Foundry API called cloudfound1 outside of my Bluemix organization:
 
 ```
-bluemix apim api-unshare --api-name cloudfound1
+bluemix apim api-unshare cloudfound1
 ```
 
 
@@ -594,8 +525,7 @@ bluemix apim api-unshare --api-name cloudfound1
 Updates the settings of a managed API by replacing its definition file.
 
 ```
-bluemix apim api-update [--api-name *API_NAME*]
-[--definition-file *OPEN_API_DEFINITION_FILE*]
+bluemix apim api-update *API_NAME* *NEW_OPEN_API_DEFINITION_FILE*
 ```
 {: codeblock}
 
@@ -610,24 +540,11 @@ bluemix apim api-update [--api-name *API_NAME*]
    <dd>Provides the path to the replacement Open API definition file, which is in YAML or JSON format.</dd>
    </dl>
 
-Only one of these options can be specified at a time.
-
 <strong>Output</strong>
 
-The command outputs a table that lists the following information about the specified APIs:
-
-   <dl>
-     <dt>Name</dt>
-	 <dd>The name of the API.</dd>
-	 <dt>Type</dt>
-	 <dd>The type of API. Valid entries are whisk, cf-apps, or user_defined.</dd>
-	 <dt>Artifact ID</dt>
-	 <dd>The ID that is assigned to the API by the endpoint manager.</dd>
-	 <dt>Exposed</dt>
-	 <dd>Indicates whether the API is exposed (*true*) or not (*false*).
-	 <dt>Shared</dt>
-	 <dd>Indicates whether the API is shared outside of your Bluemix organization (*true*) or not (*false).</dd>
-   </dl>
+The command outputs the following information:
+* Updated successfully
+* Error (with description of the error)
 
 
 <strong>Example</strong>
@@ -636,199 +553,4 @@ Update an OpenWhisk API called whiskapi1 with a definition file with the name de
 
 ```
 bluemix apim api-update --api-name whiskapi1 --definition-file ~/path/definitions/definition1.json
-```
-
-
-### bluemix login
-{: #bluemix_login}
-
-Log in user. 
-
-```
-bluemix login [OPTIONS...]
-```
-
-<strong>Prerequisites</strong>:  None
-
-<!-- staging comment for Atlas 45: might need prereq for federated ID/SSO option unless we expect them to just view the details from the cf login command -->
-
-<strong>Command options</strong>:
-<dl>
-  <dt>-a <i>API_ENDPOINT</i> (optional)</dt>
-  <dd> API endpoint (For example: api.ng.bluemix.net)</dd>
-  <dt> --apikey <i>API_KEY or @API_KEY_FILE_PATH</i>
-  <dd> API key content or the path of an API key file indicated by @</dd>
-  <dt> --sso (optional) </dt>
-  <dd> use one time passcode to login </dd>
-  <dt> -u <i>USERNAME</i> (optional)</dt>
-  <dd> Username</dd>
-  <dt> -p <i>PASSWORD</i> (optional)</dt>
-  <dd> Password</dd>
-  <dt> -c <i>ACCOUNT_ID</i> (optional) </dt>
-  <dd> ID of the target account</dd>
-  <dt> -o <i>ORG_NAME</i> (optional) </dt>
-  <dd> Name of the target organization </dd>
-  <dt> -s <i>SPACE_NAME</i> (optional) </dt>
-  <dd> Name of the target space</dd>
-  <dt> --skip-ssl-validation (optional) </dt>
-  <dd> Bypass SSL validation of HTTP requests. This option is not recommended.</dd>
-</dl>
-
-<strong>Examples</strong>:
-
-Interactive login:
-
-```
-bluemix login
-```
-
-Log in with user name and password, and set target account, org and space:
-
-```
-bluemix login -u username -p password -c MyAccountID -o MyOrg -s MySpace
-```
-
-Log in with one time passcode and set target account, org and space
-
-```
-bluemix login --sso -c MyAccountID -o MyOrg -s MySpace
-```
-
-Log in with API key and set targets:
-
-* API key has account associated
-
-```
-bluemix login --apikey api-key-string -o MyOrg -s MySpace
-```
-
-```
-bluemix login --apikey @filename -o MyOrg -s MySpace
-```
-
-* API key has no account associated
-
-```
-bluemix login --apikey api-key-string -c MyAccountID -o MyOrg -s MySpace
-```
-
-```
-bluemix login --apikey @fileName -c MyAccountID -o MyOrg -s MySpace
-```
-
-<strong>Note:</strong> If the API Key has an associated account, switching to another account is not allowed.
-
-
-### bluemix plugin install
-{: #bluemix_plugin_install}
-
-Install the specific version of plugin to {{site.data.keyword.Bluemix_notm}} CLI from the specified path or repository.
-
-```
-bluemix plugin install PLUGIN_PATH|PLUGIN_NAME [-r REPO_NAME] [-v VERSION]
-```
-
-<strong>Prerequisites</strong>:  None
-
-<strong>Command options</strong>:
-
-   <dl>
-   <dt>PLUGIN_PATH|PLUGIN_NAME (required)</dt>
-   <dd>If -r <i>REPO_NAME</i> is not specified, plugin is installed from the specified local path or remote URL.</dd>
-   <dt>-r <i>REPO_NAME</i> (optional)</dt>
-   <dd>The name of the repository where the plugin binary is located.</dd>
-   <dt>-v <i>VERSION</i> (optional)</dt>
-   <dd>The version of the plugin to be installed. If not provided, the latest version of the plugin is installed. This option is valid only when you install the plugin from the repository.</dd>
-    </dl>
-
-<strong>Examples</strong>:
-
-Install a plugin from the local file:
-
-```
-bluemix plugin install /downloads/new_plugin
-```
-
-Install a plugin from the remote URL:
-
-```
-bluemix plugin install http://plugins.ng.bluemix.net/downloads/new_plugin
-```
-
-Install the `IBM-Containers` plugin of the latest version from the `bluemix-repo` repository:
-
-```
-bluemix plugin install IBM-Containers -r bluemix-repo
-```
-Install the `IBM-Containers` plugin with the  version `0.5.800` from the `bluemix-repo` repository:
-
-```
-bluemix plugin install IBM-Containers -r bluemix-repo -v 0.5.800
-```
-
-### bluemix plugin update
-{: #bluemix_plugin_update}
-
-Upgrade the plug-in from a repository
-
-```
-bluemix plugin update -r REPO_NAME [PLUGIN NAME [-v VERSION]]
-```
-
-<strong>Prerequisites</strong>:  None
-
-<strong>Command options</strong>:
-<dl>
- <dt>-r REPO_NAME (required)</dt>
- <dd>The name of the repository where the plugin binary is located.</dd>
- <dt><i>PLUGIN_NAME</i> (optional)</dt>
- <dd>If not specified, all plug-ins available for update in the given repository are listed for selection.</dd>
- <dt>-v <i>VERSION</i> (optional)</dt>
- <dd>The version of the plugin to be updated to. If not provided, update the plugin to the the latest available version.</dd>
-</dl>
-
-<strong>Examples</strong>:
-
-check for all available upgrade in plugin repository "My-Repo":
-
-```
-bluemix plugin update -r My-Repo
-```
-
-Upgrade plugin "plugin-echo" in repository "My-Repo" to the latest:
-
-```
-bluemix plugin update -r My-Repo plugin-echo
-```
-
-Update plugin "plugin-echo" in repository "My-Repo" to version "1.0.1":
-
-```
-bluemix plugin update -r My-Repo plugin-echo -v 1.0.1
-```
-
-### bluemix plugin uninstall
-{: #bluemix_plugin_uninstall}
-
-Uninstall the specified plugin from {{site.data.keyword.Bluemix_notm}} CLI.
-
-```
-bluemix plugin uninstall PLUGIN_NAME
-```
-
-<strong>Prerequisites</strong>:  None
-
-<strong>Command options</strong>:
-
-   <dl>
-   <dt>PLUGIN_NAME (required)</dt>
-   <dd>The name of the plugin to be uninstalled.</dd>
-    </dl>
-
-<strong>Examples</strong>:
-
-Uninstall the `IBM-Containers` plugin that was previously installed:
-
-```
-bluemix plugin uninstall IBM-Containers
 ```
