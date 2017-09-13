@@ -14,7 +14,7 @@ API management
     manage_openwhisk_apis.md
     manage_cf_apis.md
     manage_apis.md
-    cli_script.md
+    keys_secrets.md
     {: .navgroup-end}
 	
 	{: .navgroup id="reference"}
