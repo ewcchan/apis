@@ -59,13 +59,6 @@ To stop unwanted usage of the data you supply, you can ensure that only users wi
 
 CORS allows embedded scripts in a web page to call the API across domain boundaries. This benefits the user of the API because it allows the API to retrieve the information from another domain when it is called by the API. Without enabling CORS, any content retrieval is limited to the same domain as the originating request. For more information about CORS, and how to implement it, see [HTTP access control (CORS) ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS.html){: new_window}.
 
-## Command-line interface
-{: #cli notoc}
-
-
-If you prefer running frequent tasks by using scripting, then you can also run many of the API management tasks by extending the {{site.data.keyword.Bluemix_notm}} command line with the API management plugin. See [Command-line interface commands](../../cli/plugins/api-management-cliplugin/index.html) for a list of available commands, or [Running commands with the API management CLI](cli_script.html) for samples of how to use the commands. 
-
-
 ## Additional API management options
 {: #add_mgt_options notoc}
 
