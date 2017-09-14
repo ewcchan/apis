@@ -2,7 +2,8 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-07-26"
+
+lastupdated: "2017-09-13"
 
 ---
 
@@ -71,10 +72,11 @@ To change the settings for an API, complete the following steps:
 3. In the Security and Rate Limiting section, you can update the following policies:
     * Require API key - Specifies whether the API call can only be processed when the correct API key is provided. The default setting does not require an additional key.
     * Security method - When the API key option is selected, specifies whether processing the API only requires the API key, or requires both the API key and the API secret.
-    * Location of the API key and secret - Depending on your setting for the method, specifies how your API security information is included in the call. The Invocation names specify how the security information is identified.
+    * Location of the API key and secret - Depending on your setting for the method, specifies how your API security information is included in the call. The Invocation names specify how the security information is identified. For more information about working with keys and secrets, see [Manage keys and secrets](keys-secrets.html).
     * Limit API call rate - Sets the number of API calls that are allowed during a specified time interval, with the option of setting it for each key. Note that a burst-type of rate-limiting method is used. The average rate of the API calls is calculated across the total time interval that you specified in the rate. If the rate of API calls during an interval exceeds the average rate of the API calls, there could be a period of denied calls up to the time limit that you specified in the rate.   
     * OAuth provider - Ensures that users with the correct security parameters can access your APIs by enforcing OAuth through social login credentials of providers like Google, Facebook, IBM App ID, and GitHub.
-    **Note:** You must specify an existing App ID service instance that is configured in {{site.data.keyword.Bluemix_notm}} to provide the identification data when you use **App ID** as your OAuth provider. If you do not have an existing App ID service, you can select **Create** in the OAuth section to create one in a new window and return to specify it for API management. You can also select **Edit** to change a selected service instance.
+
+	    **Note:** You must specify an existing App ID service instance that is configured in {{site.data.keyword.Bluemix_notm}} to provide the identification data when you use **App ID** as your OAuth provider. If you do not have an existing App ID service, you can select **Create** in the OAuth section to create one in a new window and return to specify it for API management. You can also select **Edit** to change a selected service instance.
 
 4. Enable CORS - Cross-origin requests (CORS) enables some limited requests from a different domain.
 5. Click **Save**.
@@ -82,14 +84,25 @@ To change the settings for an API, complete the following steps:
 ## Sharing APIs
 {: #share_api}
 
-You can share APIs with other users inside or outside your {{site.data.keyword.Bluemix_notm}} organization.
+You can share APIs with other users inside or outside your {{site.data.keyword.Bluemix_notm}} organization. 
 
-When you share your APIs with others, either inside or outside of your {{site.data.keyword.Bluemix_notm}} organization, you can create keys for your APIs. Each managed API supports 5 keys that can be created and assigned that API. By sending a unique key to an individual or company, you can track some statistics about how that API is used. For example, you can track the number of calls to your API by that person or company.
+When you share your APIs with others, either inside or outside of your {{site.data.keyword.Bluemix_notm}} organization, you can create keys and secrets for your APIs. Each managed API supports 5 keys that can be created and assigned that API. By sending a unique key to an individual or company, you can track some statistics about how that API is used. For example, you can track the number of calls to your API by that person or company. You can also disable a key or limit the calls from a key. This can be helpful during testing, workload balancing, monetizing, or for addressing some security situations.
 
-You can also disable a key or limit the calls from a key. This can be helpful during testing, workload balancing, monetizing, or for addressing some security situations.  
+A *key* is a unique string of characters that is associated with your API. You can assign more than one key to an API, which helps you track the usage of the API by each customer. For example, you give one key to one customer, and another key to another customer. Each time the customers call the API, they include their assigned key. By tracking that key, you know which customer called the API.
+
+There are two types of keys:
+
+* Keys for sharing the API with customers who have access to your {{site.data.keyword.Bluemix_notm}} organization. 
+* Keys for sharing the API with customers who do not have access to your {{site.data.keyword.Bluemix_notm}} organization. 
+
+The different types of keys are created, maintained, and deleted in the same way. The only difference is who is able to use the keys.
+
+After creating one or more keys for your API, you can limit the rate of calls to your APIs by key. By enabling the **Limit API call rate on a per-key basis** slider on the *Definition* tab, the number of calls for each key that you created is limited to the rate limit that you set. If the slider is off, then the rate limit that you defined applies to the collective calls from all of the keys for that API.   
+
+A *secret* is similar to a key, as is used to maintain access to the API itself. A secret is customizable and can be changed without changing the key. There cannot be a secret if there is no key. For example, only someone with the correct secret can upload a new version of the API. You can require an API and a secret for your API calls, or only use a key. Secrets can be helpful if you need to change the secret, but do not want to change the key. 
 
 1. In the API management dashboard, click the **Sharing** tab.
-2. Within the "Sharing within {{site.data.keyword.Bluemix_notm}} Organization" area, select **Share API with all users in my Bluemix organization** if you want your API to be available to others with access to your {{site.data.keyword.Bluemix_notm}} organization. This must be selected to generate a key.
+2. Within the "Sharing within {{site.data.keyword.Bluemix_notm}} Organization" area, select **Expose Managed API** if you want your API to be available to others with access to your {{site.data.keyword.Bluemix_notm}} organization. This must be selected to generate a key.
 3. Click **Create API Key** to create a unique key for your API. The Create API Key dialog box is displayed. The API key is generated automatically.
 4. Use the API key to determine which user is accessing the API by sending a user a unique key. The gateway can determine which key (and customer) is generating the call.
 5. Click the the **Menu** icon (three vertical dots) beside the key to Edit or Delete that API key.
@@ -104,6 +117,8 @@ In the Sharing Outside of {{site.data.keyword.Bluemix_notm}} Organization sectio
   
 The API documentation link opens the API in the **API Explorer** tab.
 
+For more information about working with keys and secrets, see [Manage keys and secrets](keys-secrets.html).
+
 ## Viewing and testing with API Explorer
 {: #explore_api}
 
@@ -117,4 +132,5 @@ To test the API, complete the following steps:
 3. Select **Try it**.
 4. Select **Call operation**. 
 
-The response to the request is displayed.   
+The response to the request is displayed. 
+

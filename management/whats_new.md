@@ -2,7 +2,9 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-07-27"
+
+lastupdated: "2017-09-13"
+
 
 ---
 
@@ -20,6 +22,11 @@ lastupdated: "2017-07-27"
 {:shortdesc}
 
 The following updates have been made, arranged according to month of release:
+
+## September 2017
+{: #0917updates}
+
+* Added information about using keys and secrets. For more information, see [Editing API settings](manage_apis.html#settings_apis) and [Manage keys and secrets](keys_secrets.html). 
 
 ## July 2017
 {: #0717updates}
