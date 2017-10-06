@@ -3,7 +3,7 @@
 copyright:
   years: 2017
 
-lastupdated: "2017-09-13"
+lastupdated: "2017-10-06"
 
 
 ---
@@ -22,6 +22,11 @@ lastupdated: "2017-09-13"
 {:shortdesc}
 
 The following updates have been made, arranged according to month of release:
+
+## October 2017
+{: #1017updates}
+
+* Added support for using custom domains. For more information, see [Custom domains](manage_apis.html#custom_domains).
 
 ## September 2017
 {: #0917updates}
