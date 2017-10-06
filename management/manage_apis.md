@@ -3,7 +3,7 @@
 copyright:
   years: 2017
 
-lastupdated: "2017-09-13"
+lastupdated: "2017-10-04"
 
 ---
 
@@ -134,3 +134,46 @@ To test the API, complete the following steps:
 
 The response to the request is displayed. 
 
+## Custom domains
+{: #custom_domains}
+
+In some instances, you might want a custom or "vanity" domain instead of the API gateway's default domain. The API management capability supports fronting APIs with a custom domains as long as the domain is registered in your {{site.data.keyword.Bluemix_notm}} environment.
+
+Complete the following steps to initially set up the custom domain. If you previously completed the steps to set up the domain, see [Using a custom domain with your APIs](manage_apis.html#custom_domains_bind).
+
+### Setup
+
+To place a custom domain in front of an API, first register your domain with {{site.data.keyword.Bluemix_notm}}. This can be done from the organization management screen:
+
+1. From the org selector in the {{site.data.keyword.Bluemix_notm}} header, select **Manage organizations**.
+2. Locate the desired organization in which the domain should be registered and select **View Details**.
+3. Click the **Edit Org** link next to the organization name.
+4. Select the **Domains** tab.
+5. Click **Add Domain** and enter the domain name.
+6. After the domain appears in the list, select **Save** at the top of the screen.
+7. Upload an SSL certificate for this domain. This can be done by selecting the **Upload** icon next to the domain name. Both the public certificate and the corresponding private key are required.  
+	**Notes:**
+	* The API management gateway only supports traffic on the HTTPS protocol, so an SSL certificate must be provided.
+	* {{site.data.keyword.Bluemix_notm}} trial accounts are limited to a single SSL certificate per organization. If additional certificates are required, you must upgrade your account to a paid or subscription tier.
+	* If you plan to use one or more subdomains for API traffic, a wildcard certificate or a certificate containing the desired *Subject Alternative Names* (SANs) is required.
+8. Configure the domain's DNS settings. 
+9. Create a CNAME record for the domain targeting one of the following secure endpoints depending on which region hosts the target API:
+	- **US South:** secure.us-south.bluemix.net.
+	- **United Kingdom:** secure.eu-gb.bluemix.net.
+	- **Frankfurt:** secure.eu-de.bluemix.net.
+	- **Sydney:** secure.au-syd.bluemix.net.
+
+### Using a custom domain with your APIs
+{: #custom_domains_bind}
+
+After the initial setup is complete, bind one or more APIs to the registered domain from the **Defintion** section of your API by completing the following steps:
+1. In *API Basics*, select the API Domain menu, and choose a custom domain from the domains that you configured in the previous steps.
+
+2. Optional: Provide a unique subdomain for this API.
+	**Note**: In order to use a subdomain, the SSL certificate that was uploaded in Step 7 of `Setup` must contain a valid wildcard configuration *or* each subdomain must be listed as a Subject Alternative Name (SAN).
+
+3. Save the API. Domain settings might take several minutes to become active.
+
+For more information, see:
+[Manage Domains](../../admin/manageorg.html#managedomains) or
+[Creating and Using a Custom Domain](../../manageapps/updapps.html#domain).
