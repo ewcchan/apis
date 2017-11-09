@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-08-09"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -25,9 +25,9 @@ To add a key to your API, complete the following steps:
 
 1. Open your Cloud Foundry Application or OpenWhisk API, if it is not already open.
 
-2. Select *API management* in the navigation.
+2. Select *API Management* in the navigation.
 
-3. Select the Sharing tab to access the keys for that application or API. 
+3. Select the Sharing & keys tab to access the keys for that application or API. *Note: You cannot see the tabs until you save your application or API for the first time.*
 
 4. Ensure that the **Expose Managed API** slider is set to the *on* position. Your API must be exposed before you can assign keys.
 
@@ -43,7 +43,7 @@ To add a key to your API, complete the following steps:
   3. Optional: If you want to add a secret to the key, select the **API Portal Link** for the key that you want to add the secret to and select **Set API Secret**.
   4. Select **Save** to save the new key.
   5. You can repeat steps *a* through *d* for additional keys, if necessary. You can have a maximum of 5 keys in this section per API.
-Your keys are listed for the API when the *Sharing* tab is selected.
+Your keys are listed for the API when the Sharing & keys tab is selected.
 
 ## Specifying a key and secret in an API call
 {: #spec_key_secret}
@@ -69,7 +69,7 @@ At some point, you will want to remove a key. Maybe a customer that used your AP
 
 2. Select *API management* in the navigation.
 
-3. Select the *Sharing* tab.
+3. Select the *Sharing & keys* tab.
 
 4. Find the key that you want to delete. Tip: This is when it is helpful to name the keys so they are easily identified.
 
