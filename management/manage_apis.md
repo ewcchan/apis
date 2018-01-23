@@ -1,9 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-
-lastupdated: "2017-10-04"
+  years: 2017,2018
+lastupdated: "2018-01-11"
 
 ---
 
@@ -75,9 +74,7 @@ To change the settings for an API, complete the following steps:
     * Location of the API key and secret - Depending on your setting for the method, specifies how your API security information is included in the call. The Invocation names specify how the security information is identified. For more information about working with keys and secrets, see [Manage keys and secrets](keys-secrets.html).
     * Limit API call rate - Sets the number of API calls that are allowed during a specified time interval, with the option of setting it for each key. Note that a burst-type of rate-limiting method is used. The average rate of the API calls is calculated across the total time interval that you specified in the rate. If the rate of API calls during an interval exceeds the average rate of the API calls, there could be a period of denied calls up to the time limit that you specified in the rate.   
     * OAuth provider - Ensures that users with the correct security parameters can access your APIs by enforcing OAuth through social login credentials of providers like Google, Facebook, IBM App ID, and GitHub.
-
 	    **Note:** You must specify an existing App ID service instance that is configured in {{site.data.keyword.Bluemix_notm}} to provide the identification data when you use **App ID** as your OAuth provider. If you do not have an existing App ID service, you can select **Create** in the OAuth section to create one in a new window and return to specify it for API management. You can also select **Edit** to change a selected service instance.
-
 4. Enable CORS - Cross-origin requests (CORS) enables some limited requests from a different domain.
 5. Click **Save**.
 
@@ -113,7 +110,7 @@ In the Sharing Outside of {{site.data.keyword.Bluemix_notm}} Organization sectio
      Notice that the user has a secret that you cannot control.
 2. Provide a unique name for the API key.
 3. Select **Create key**. 
-4. Send the API Portal Link to the customer without a {{site.data.keyword.Bluemix_notm}} account. The API key and secret (if it is used) is included in the link, so you can still determine which key generatated the link.
+4. Send the API Portal Link to the customer without a {{site.data.keyword.Bluemix_notm}} account. The API key and secret (if it is used) is included in the link, so you can still determine which key generated the link.
   
 The API documentation link opens the API in the **API Explorer** tab.
 
@@ -175,5 +172,5 @@ After the initial setup is complete, bind one or more APIs to the registered dom
 3. Save the API. Domain settings might take several minutes to become active.
 
 For more information, see:
-[Manage Domains](../../admin/manageorg.html#managedomains) or
+[Managing Domains](../../admin/manageorg.html#managedomains) or
 [Creating and Using a Custom Domain](../../manageapps/updapps.html#domain).

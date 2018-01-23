@@ -1,10 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-
-lastupdated: "2017-10-06"
-
+  years: 2017, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -22,6 +20,11 @@ lastupdated: "2017-10-06"
 {:shortdesc}
 
 The following updates have been made, arranged according to month of release:
+
+## January 2018
+{: #0118updates}
+
+* Updated the procedure for migrating your API to the {{site.data.keyword.apiconnect_full}} service.
 
 ## October 2017
 {: #1017updates}
