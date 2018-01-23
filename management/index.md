@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-06-28"
+  years: 2017,2018
+lastupdated: "2018-01-05"
 
 ---
 
@@ -16,12 +16,12 @@ lastupdated: "2017-06-28"
 # Overview
 {: #index}
 
-You can manage APIs natively in {{site.data.keyword.Bluemix}} whether they're associated with any Cloud Foundry runtime, an {{site.data.keyword.openwhisk_short}} action, or a growing list of integrated {{site.data.keyword.Bluemix_notm}} services such as the {{site.data.keyword.appconserviceshort}} service. Managing your APIs allows you to control usage, increase adoption and track statistics.
+You can manage APIs natively in {{site.data.keyword.Bluemix}} whether they're associated with any Cloud Foundry runtime, a {{site.data.keyword.openwhisk_short}} action, or a growing list of integrated {{site.data.keyword.Bluemix_notm}} services such as the {{site.data.keyword.appconserviceshort}} service. Managing your APIs allows you to control usage, increase adoption and track statistics.
 
 API management is integrated into the following {{site.data.keyword.Bluemix_notm}} services:
 * Cloud Foundry applications
 * IBM App Connect
-* OpenWhisk action APIs
+* {{site.data.keyword.openwhisk_short}} action APIs
 
 As displayed in the following diagram, API management works by inserting a fast and lightweight gateway in front of existing cloud endpoints. The gateway, referred to as the API Gateway in the diagram, is responsible for responding to incoming API calls from applications. The API Gateway provides a comprehensive set of API policies for security, traffic management, mediation, acceleration, and non-HTTP protocol support.
 
@@ -47,7 +47,7 @@ API management uses the {{site.data.keyword.Bluemix_notm}} logging and metrics s
 ## Rate limiting by subscription (API key)
 {: #rate_limit notoc}
 
-You can enforce a rate limit to manage the number of calls that applications can make to your APIs. You can specify a rate limit so that only a permitted number of calls are made per second, minute, hour, so that for instance, your backend is not overloaded. You can set this either by overall API or by each API key.
+You can enforce a rate limit to manage the number of calls that applications can make to your APIs. You can specify a rate limit so that only a permitted number of calls are made per second, minute, hour, so that for instance, your backend is not overloaded. You can set this rate to apply to the overall API, or set a single limit for the API that applies to each API key individually. For more information about keys and secrets, see [Editing API settings](manage_apis.html#settings_apis).
 
 ## OAuth
 {: #oauth notoc}
@@ -65,4 +65,3 @@ CORS allows embedded scripts in a web page to call the API across domain boundar
 These features for API management are available in the API Management tab of your Cloud Foundry, {{site.data.keyword.openwhisk_short}}, or App Connect Dashboard. For more complex management solutions, you can upgrade to the full {{site.data.keyword.apiconnect_full}} service to access more features such as detailed analytics, packaging strategies for your APIs, or a developer portal to socialize APIs. See [Getting started with API Connect](https://console.ng.bluemix.net/docs/services/apiconnect/index.html){: new_window} for more information about the {{site.data.keyword.apiconnect_full}} service.
 
 For more information about upgrading your APIs that you are managing in {{site.data.keyword.Bluemix_notm}} to the {{site.data.keyword.apiconnect_short}} service, see [Accessing more API management features](upgrade.html).
-
